@@ -1,6 +1,7 @@
 /* Global Rules Start */
 
 :root {
+	--main-brown-color: #714a02;
 	--main-border-radius: 10px;
 }
 
@@ -11,16 +12,68 @@
 }
 
 body {
-	height: 100vh;
+	max-height: 100vh;
 	font-family: "Open Sans", sans-serif;
+	background-color: #e7e1cb;
 }
 
 /* Global Rules End */
 
 .container {
 	width: 100%;
-	margin-top: 50px;
+	margin-top: 25px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.container h1 {
+	color: #dd891a;
+	font-size: 60px;
+	margin-bottom: 10px;
+}
+
+.container .score h3 {
+	color: var(--main-brown-color);
+	font-size: 50px;
+	margin-bottom: 20px;
+}
+
+.container button {
+	background-color: var(--main-brown-color);
+	color: #e7e1cb;
+	border: none;
+	padding: 10px 20px;
+	font-size: 20px;
+	cursor: pointer;
+	border-radius: var(--main-border-radius);
+	margin-bottom: 50px;
+}
+
+.container .game {
+	display: grid;
+	grid-template-columns: repeat(3, 160.91px);
+	grid-template-rows: repeat(2, 165px);
+	gap: 50px;
+}
+
+.container .hole {
+	position: relative;
+}
+
+.container .hole .dirt {
+	height: 70px;
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1;
+}
+
+.container .hole .mole {
+	position: absolute;
+	height: 140px;
+	bottom: 25px;
+	left: 50%;
+	transform: translateX(-50%);
 }
