@@ -84,9 +84,7 @@ function hideMole(number) {
 function showHideMole() {
 	let randomNumber = Math.floor(Math.random() * 6);
 
-	setTimeout(() => {
-		showMole(randomNumber);
-	}, 0);
+	showMole(randomNumber);
 
 	setTimeout(() => {
 		hideMole(randomNumber);

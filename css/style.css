@@ -64,7 +64,6 @@ body {
 .container .hole .dirt,
 .container .hole .mole {
 	user-select: none;
-	/* -webkit-user-drag: none; */
 }
 
 .container .hole .dirt {
