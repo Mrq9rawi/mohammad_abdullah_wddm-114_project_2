@@ -3,6 +3,8 @@ const moles = document.querySelectorAll(".mole");
 const scoreSpan = document.querySelector(".score h3 span");
 const startButton = document.querySelector("button");
 const game = document.querySelector(".game");
+const dirts = document.querySelectorAll(".dirt");
+const sound = document.querySelector("audio");
 
 // Declare Score Variable
 let score = 0;
@@ -16,9 +18,18 @@ let gameDuration = 15;
 // Update Score
 updateScore();
 
+// Prevent User From Dragging Images
+preventDrag(moles);
+preventDrag(dirts);
+
+
 // Start Game Button Clicked
 startButton.addEventListener("click", () => {
+	// Check If The Game Is ON or OFF
 	if (!game.classList.contains("started")) {
+		// Make Button Not Allowed
+		startButton.style.cursor = "not-allowed";
+
 		// Rest Score
 		score = 0;
 
@@ -48,6 +59,8 @@ startButton.addEventListener("click", () => {
 			if (seconds == gameDuration) {
 				// Stop Game
 				clearInterval(showHideInterval);
+				// Reset Button
+				startButton.style.cursor = "pointer";
 				setTimeout(() => {
 					// Stop Timer
 					clearInterval(timerInterval);
@@ -77,7 +90,7 @@ function showHideMole() {
 
 	setTimeout(() => {
 		hideMole(randomNumber);
-	}, 600);
+	}, 500);
 }
 
 // Timer Function
@@ -104,13 +117,13 @@ function addStarted() {
 // Add & Remove Event Listeners To Moles
 function addEvent() {
 	if (game.classList.contains("started")) {
-		for (let mole of moles) {
+		moles.forEach((mole) => {
 			mole.addEventListener("click", addPoint);
-		}
+		});
 	} else {
-		for (let mole of moles) {
+		moles.forEach((mole) => {
 			mole.removeEventListener("click", addPoint);
-		}
+		});
 	}
 }
 
@@ -118,6 +131,7 @@ function addEvent() {
 function addPoint() {
 	score++;
 	updateScore();
+	sound.play();
 }
 
 // Update Score Function
@@ -128,12 +142,21 @@ function updateScore() {
 // Hide & Show All Moles Function
 function gameAction() {
 	if (game.classList.contains("started")) {
-		for (let mole of moles) {
+		moles.forEach((mole) => {
 			mole.style.display = "none";
-		}
+		});
 	} else {
-		for (let mole of moles) {
+		moles.forEach((mole) => {
 			mole.style.display = "inline-block";
-		}
+		});
 	}
+}
+
+// Prevent The User From Dragging Images Function
+function preventDrag(elemArr) {
+	elemArr.forEach((elem) => {
+		elem.ondragstart = () => {
+			return false;
+		};
+	});
 }

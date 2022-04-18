@@ -61,6 +61,12 @@ body {
 	position: relative;
 }
 
+.container .hole .dirt,
+.container .hole .mole {
+	user-select: none;
+	/* -webkit-user-drag: none; */
+}
+
 .container .hole .dirt {
 	height: 70px;
 	position: absolute;
